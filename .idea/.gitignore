@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+/runConfigurations.xml
+/vcs.xml
+/compiler.xml
+/artifacts/composeApp_desktop.xml
+/misc.xml
+/migrations.xml
+/gradle.xml
