@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# File: .git/hooks/prepare-commit-msg
+# Description: Prepends the branch number to the commit message.
+
+# Exit if the hook is triggered by a merge commit or commit amendment
+if [[ "$2" == "merge" || "$3" == "merge" || "$2" == "commit" ]]; then
+    exit 0
+fi
+
+# Get the branch name
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+# Extract the number from the branch name (assuming it's the first number in the branch)
+BRANCH_NUMBER=$(echo "$BRANCH_NAME" | grep -o -E '[0-9]+' | head -n 1)
+
+# Exit if no branch number is found
+if [[ -z "$BRANCH_NUMBER" ]]; then
+    echo "No branch number found. Skipping commit message modification."
+    exit 0
+fi
+
+# Add the branch number to the commit message if it's not already there
+COMMIT_MSG_FILE=$1
+FIRST_LINE=$(head -n 1 "$COMMIT_MSG_FILE")
+
+if [[ ! "$FIRST_LINE" =~ ^\[\#$BRANCH_NUMBER\] ]]; then
+    echo "[#$BRANCH_NUMBER] $FIRST_LINE" > "$COMMIT_MSG_FILE"
+    tail -n +2 "$COMMIT_MSG_FILE" >> "$COMMIT_MSG_FILE"
+fi

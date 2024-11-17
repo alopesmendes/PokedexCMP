@@ -96,3 +96,23 @@ compose.desktop {
         }
     }
 }
+
+tasks.register<Copy>("copyPrepareCommitMsgHook") {
+    description = "Copy prepare-commit-msg git hook from the scripts to the .git/hooks folder."
+    group = "git hooks"
+    outputs.upToDateWhen { false }
+    from("$rootDir/scripts/prepare-commit-msg")
+    into("$rootDir/.git/hooks/")
+    doLast {
+        // Make the script executable
+        val preCommitHook = file("$rootDir/.git/hooks/prepare-commit-msg")
+        if (preCommitHook.exists()) {
+            preCommitHook.setExecutable(true)
+        }
+    }
+}
+
+tasks.register("initializeProject") {
+    description = "Initialize the project."
+    dependsOn("copyPrepareCommitMsgHook")
+}
