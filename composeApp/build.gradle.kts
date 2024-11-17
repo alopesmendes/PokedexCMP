@@ -36,7 +36,12 @@ kotlin {
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
+
+            // KOIN
             implementation(libs.koin.android)
+
+            // KTOR
+            implementation(libs.ktor.client.okhttp)
         }
 
         commonMain.dependencies {
@@ -54,11 +59,22 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.koin.compose)
             implementation(libs.koin.compose.viewmodel)
+
+            // KTOR
+            implementation(libs.bundles.ktor)
+        }
+
+        iosMain.dependencies {
+            // KTOR
+            implementation(libs.ktor.client.darwin)
         }
 
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
+
+            // KTOR
+            implementation(libs.ktor.client.cio)
         }
     }
 }
