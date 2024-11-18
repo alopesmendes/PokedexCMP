@@ -32,11 +32,32 @@ fi
   echo "*************************************************"
   echo ""
   echo ""
-  echo "$CHANGED_FILES" | while read -r file; do
-      if [ -f "$file" ]; then
-          git add "$file"
-      fi
-  done
 
 echo "Completed ktlint hook."
 ######## KTLINT-GRADLE HOOK END ########
+
+######## DETEKT-GRADLE HOOK START ########
+./gradlew detekt > "$OUTPUT"
+EXIT_CODE=$?
+if [ $EXIT_CODE -ne 0 ]; then
+  cat "$OUTPUT"
+  rm "$OUTPUT"
+  echo "*************************************************"
+  echo "              detekt failed :(             "
+  echo " Please fix the failing format before committing "
+  echo "*************************************************"
+  exit $EXIT_CODE
+fi
+  echo "*************************************************"
+  echo "              detekt success :)            "
+  echo "*************************************************"
+  echo ""
+  echo ""
+######## DETEKT-GRADLE HOOK END ########
+
+######## ADD FILES ########
+echo "$CHANGED_FILES" | while read -r file; do
+    if [ -f "$file" ]; then
+        git add "$file"
+    fi
+done

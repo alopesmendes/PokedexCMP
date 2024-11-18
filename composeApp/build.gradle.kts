@@ -9,6 +9,7 @@ plugins {
 	alias(libs.plugins.composeMultiplatform)
 	alias(libs.plugins.composeCompiler)
 	alias(libs.plugins.ktlint)
+	alias(libs.plugins.detekt)
 }
 
 kotlin {
@@ -172,4 +173,13 @@ ktlint {
 		reporter(ReporterType.CHECKSTYLE)
 		reporter(ReporterType.JSON)
 	}
+}
+
+detekt {
+	parallel = true
+	allRules = false
+	autoCorrect = true
+	buildUponDefaultConfig = true
+	source.setFrom(files("$rootDir/composeApp/src/"))
+	config.setFrom(file("$rootDir/config/detekt.yml"))
 }
