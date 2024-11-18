@@ -10,6 +10,7 @@ plugins {
 	alias(libs.plugins.composeCompiler)
 	alias(libs.plugins.ktlint)
 	alias(libs.plugins.detekt)
+	alias(libs.plugins.dokka)
 }
 
 kotlin {
