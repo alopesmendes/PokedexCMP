@@ -67,6 +67,9 @@ kotlin {
 
 			// KTOR
 			implementation(libs.bundles.ktor)
+
+			// COIL
+			implementation(libs.bundles.coil)
 		}
 
 		iosMain.dependencies {
