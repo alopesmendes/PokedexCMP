@@ -46,6 +46,9 @@ kotlin {
 
 			// KTOR
 			implementation(libs.ktor.client.okhttp)
+
+			// COROUTINES
+			implementation(libs.kotlinx.coroutines.android)
 		}
 
 		commonMain.dependencies {
@@ -70,6 +73,12 @@ kotlin {
 
 			// COIL
 			implementation(libs.bundles.coil)
+
+			// NAVIGATION
+			implementation(libs.navigation.compose)
+
+			// KOTLINX
+			implementation(libs.bundles.kotlinx)
 		}
 
 		iosMain.dependencies {
@@ -83,6 +92,12 @@ kotlin {
 
 			// KTOR
 			implementation(libs.ktor.client.cio)
+		}
+
+		commonTest.dependencies {
+			implementation(kotlin("test-common"))
+			implementation(kotlin("test-annotations-common"))
+			implementation(libs.bundles.kotlinx.test)
 		}
 	}
 }
