@@ -59,6 +59,9 @@ kotlin {
 			implementation(compose.components.resources)
 			implementation(compose.components.uiToolingPreview)
 
+			// ANDROIDX
+			implementation(libs.androidx.collection)
+
 			// LIFECYCLE
 			implementation(libs.bundles.lifecycle)
 

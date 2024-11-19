@@ -17,9 +17,12 @@ coil3 = "3.0.3"
 navigation = "2.8.0-alpha10"
 coroutines = "1.9.0"
 kotlinx-json = "1.7.3"
+androidx-collection = "1.4.5"
 
 [libraries]
+# ANDROIDX
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
+androidx-collection = { module = "androidx.collection:collection", version.ref = "androidx-collection" }
 
 # KOIN
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koin" }
@@ -61,7 +64,6 @@ kotlinx-coroutines-swing = { group = "org.jetbrains.kotlinx", name = "kotlinx-co
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
 kotlin-test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json",version.ref = "kotlinx-json"}
-
 
 [bundles]
 # KTOR
