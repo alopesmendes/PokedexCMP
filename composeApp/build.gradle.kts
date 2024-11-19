@@ -102,6 +102,7 @@ kotlin {
 			implementation(kotlin("test-common"))
 			implementation(kotlin("test-annotations-common"))
 			implementation(libs.bundles.kotlinx.test)
+			implementation(libs.turbine)
 		}
 	}
 }

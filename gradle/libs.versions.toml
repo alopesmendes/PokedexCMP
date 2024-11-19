@@ -20,6 +20,7 @@ kotlinx-json = "1.7.3"
 androidx-collection = "1.4.5"
 kotlinx-collection-immutable = "0.3.7"
 mokkery = "2.5.1"
+turbine = "1.2.0"
 
 [libraries]
 # ANDROIDX
@@ -67,6 +68,9 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotl
 kotlin-test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json",version.ref = "kotlinx-json"}
 kotlinx-collection-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collection-immutable" }
+
+# TEST
+turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
 [bundles]
 # KTOR
