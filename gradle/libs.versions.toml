@@ -14,7 +14,6 @@ detekt = "1.23.7"
 dokka = "1.9.20"
 lifecycle = "2.8.4"
 coil3 = "3.0.3"
-navigation = "2.8.0-alpha10"
 coroutines = "1.9.0"
 kotlinx-json = "1.7.3"
 androidx-collection = "1.4.5"
@@ -23,6 +22,8 @@ mokkery = "2.5.1"
 turbine = "1.2.0"
 adaptive = "1.0.1"
 adaptive-window-size = "1.7.1"
+navigation-compose = "2.8.0-alpha10"
+navigation-material = "1.7.0-beta02"
 
 [libraries]
 # ANDROIDX
@@ -60,7 +61,8 @@ coil-network-ktor3 = { module = "io.coil-kt.coil3:coil-network-ktor3", version.r
 coil-mp = { module = "io.coil-kt.coil3:coil", version.ref = "coil3" }
 
 # NAVIGATION
-navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation" }
+navigation-compose = { module = "org.jetbrains.androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
+navigation-material = { module = "org.jetbrains.compose.material:material-navigation", version.ref ="navigation-material" }
 
 # KOTLINX
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
@@ -124,6 +126,12 @@ adaptive = [
     "adaptive-layout",
     "adaptive-navigation",
     "adaptive-window-size",
+]
+
+# NAVIGATION
+navigation = [
+    "navigation-compose",
+    "navigation-material"
 ]
 
 [plugins]

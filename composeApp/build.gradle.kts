@@ -80,7 +80,7 @@ kotlin {
 			implementation(libs.bundles.coil)
 
 			// NAVIGATION
-			implementation(libs.navigation.compose)
+			implementation(libs.bundles.navigation)
 
 			// KOTLINX
 			implementation(libs.bundles.kotlinx)
