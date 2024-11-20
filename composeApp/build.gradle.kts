@@ -107,7 +107,6 @@ kotlin {
 			implementation(kotlin("test-annotations-common"))
 			implementation(libs.bundles.kotlinx.test)
 			implementation(libs.turbine)
-			implementation(libs.konsist)
 		}
 	}
 }
@@ -212,4 +211,8 @@ detekt {
 	buildUponDefaultConfig = true
 	source.setFrom(files("$rootDir/composeApp/src/"))
 	config.setFrom(file("$rootDir/config/detekt.yml"))
+}
+
+dependencies {
+	testImplementation(libs.konsist)
 }
