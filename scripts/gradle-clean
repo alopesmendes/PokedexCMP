@@ -1,0 +1,5 @@
+./gradlew clean
+./gradlew --stop
+rm -rf ~/.gradle/caches/
+rm -rf composeApp/schemas/
+./gradlew --daemon
