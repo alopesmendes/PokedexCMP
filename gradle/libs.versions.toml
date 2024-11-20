@@ -21,6 +21,8 @@ androidx-collection = "1.4.5"
 kotlinx-collection-immutable = "0.3.7"
 mokkery = "2.5.1"
 turbine = "1.2.0"
+adaptive = "1.0.1"
+adaptive-window-size = "1.7.1"
 
 [libraries]
 # ANDROIDX
@@ -72,6 +74,12 @@ kotlinx-collection-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collect
 # TEST
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 
+# ADAPTIVE
+adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
+adaptive-layout = { module = "org.jetbrains.compose.material3.adaptive:adaptive-layout", version.ref = "adaptive" }
+adaptive-navigation = { module = "org.jetbrains.compose.material3.adaptive:adaptive-navigation", version.ref = "adaptive" }
+adaptive-window-size = { module = "org.jetbrains.compose.material3:material3-window-size-class", version.ref = "adaptive-window-size" }
+
 [bundles]
 # KTOR
 ktor = [
@@ -108,6 +116,14 @@ kotlinx = [
 kotlinx-test = [
     "kotlin-test",
     "kotlin-test-coroutines",
+]
+
+# ADAPTIVE
+adaptive = [
+    "adaptive",
+    "adaptive-layout",
+    "adaptive-navigation",
+    "adaptive-window-size",
 ]
 
 [plugins]

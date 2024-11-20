@@ -84,6 +84,9 @@ kotlin {
 
 			// KOTLINX
 			implementation(libs.bundles.kotlinx)
+
+			// ADAPTIVE
+			implementation(libs.bundles.adaptive)
 		}
 
 		iosMain.dependencies {
