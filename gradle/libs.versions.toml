@@ -24,6 +24,7 @@ adaptive = "1.0.1"
 adaptive-window-size = "1.7.1"
 navigation-compose = "2.8.0-alpha10"
 navigation-material = "1.7.0-beta02"
+konsist = "0.16.1"
 
 [libraries]
 # ANDROIDX
@@ -75,6 +76,7 @@ kotlinx-collection-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collect
 
 # TEST
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
+konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
 
 # ADAPTIVE
 adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
