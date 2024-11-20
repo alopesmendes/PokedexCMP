@@ -10,4 +10,5 @@ plugins {
 	alias(libs.plugins.detekt) apply false
 	alias(libs.plugins.dokka) apply false
 	alias(libs.plugins.mokkery) apply false
+	alias(libs.plugins.kotestMultiplatform) apply false
 }

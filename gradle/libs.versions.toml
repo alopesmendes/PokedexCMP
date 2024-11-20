@@ -25,6 +25,7 @@ adaptive-window-size = "1.7.1"
 navigation-compose = "2.8.0-alpha10"
 navigation-material = "1.7.0-beta02"
 konsist = "0.16.1"
+kotest = "5.9.1"
 
 [libraries]
 # ANDROIDX
@@ -77,6 +78,11 @@ kotlinx-collection-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collect
 # TEST
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 konsist = { module = "com.lemonappdev:konsist", version.ref = "konsist" }
+## KOTEST
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+kotest-framework-engine = { module = "io.kotest:kotest-framework-engine", version.ref = "kotest" }
+kotest-framework-datatest = { module = "io.kotest:kotest-framework-datatest", version.ref = "kotest" }
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
 
 # ADAPTIVE
 adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
@@ -94,6 +100,7 @@ ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
+kotestMultiplatform = { id = "io.kotest.multiplatform", version.ref = "kotest" }
 
 [bundles]
 # KTOR
@@ -145,4 +152,11 @@ adaptive = [
 navigation = [
     "navigation-compose",
     "navigation-material"
+]
+
+# KOTEST
+kotest = [
+    "kotest-assertions-core",
+    "kotest-framework-datatest",
+    "kotest-framework-engine"
 ]
