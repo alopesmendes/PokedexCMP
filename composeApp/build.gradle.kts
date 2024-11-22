@@ -34,9 +34,11 @@ kotlin {
 		}
 	}
 
-	jvm()
+	jvm("desktop")
 
 	sourceSets {
+		val desktopMain by getting
+
 		androidMain.dependencies {
 			implementation(compose.preview)
 			implementation(libs.androidx.activity.compose)
@@ -217,7 +219,7 @@ detekt {
 	config.setFrom(file("$rootDir/config/detekt.yml"))
 }
 
-tasks.named<Test>("jvmTest") {
+tasks.named<Test>("desktopTest") {
 	useJUnitPlatform()
 	filter {
 		isFailOnNoMatchingTests = false
