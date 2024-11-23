@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.staticCompositionLocalOf
 import org.ailtontech.pokedex.presentation.theme.colors.ContrastLevel
 import org.ailtontech.pokedex.presentation.theme.colors.darkThemeColorScheme
 import org.ailtontech.pokedex.presentation.theme.colors.lightThemeColorScheme
@@ -25,6 +26,11 @@ val MaterialTheme.dimensions: Dimensions
 	@ReadOnlyComposable
 	@Composable
 	get() = LocalDimensions.current
+
+val LocalWindowSizeClass =
+	staticCompositionLocalOf<WindowSizeClass> {
+		error("WindowSizeClass not provided")
+	}
 
 @Composable
 fun PokedexTheme(
@@ -58,6 +64,7 @@ fun PokedexTheme(
 			LocalShapes provides shapes,
 			LocalTypography provides typography,
 			LocalDimensions provides dimensions,
+			LocalWindowSizeClass provides windowSizeClass,
 		) {
 			MaterialTheme(
 				typography = typography,
