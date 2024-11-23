@@ -26,6 +26,7 @@ navigation-compose = "2.8.0-alpha10"
 navigation-material = "1.7.0-beta02"
 konsist = "0.16.1"
 kotest = "5.9.1"
+napier = "2.7.1"
 
 [libraries]
 # ANDROIDX
@@ -89,6 +90,9 @@ adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", versi
 adaptive-layout = { module = "org.jetbrains.compose.material3.adaptive:adaptive-layout", version.ref = "adaptive" }
 adaptive-navigation = { module = "org.jetbrains.compose.material3.adaptive:adaptive-navigation", version.ref = "adaptive" }
 adaptive-window-size = { module = "org.jetbrains.compose.material3:material3-window-size-class", version.ref = "adaptive-window-size" }
+
+# LOGGING
+napier = { module = "io.github.aakira:napier", version.ref = "napier" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

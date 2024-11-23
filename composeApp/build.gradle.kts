@@ -88,6 +88,9 @@ kotlin {
 
 			// ADAPTIVE
 			implementation(libs.bundles.adaptive)
+
+			// Logging
+			implementation(libs.napier)
 		}
 
 		iosMain.dependencies {
