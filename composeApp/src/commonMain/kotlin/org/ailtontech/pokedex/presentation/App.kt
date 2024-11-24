@@ -19,8 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpSize
 import org.ailtontech.pokedex.Greeting
-import org.ailtontech.pokedex.presentation.components.TextBody
-import org.ailtontech.pokedex.presentation.components.TextCaption
 import org.ailtontech.pokedex.presentation.components.TextTitle
 import org.ailtontech.pokedex.presentation.theme.PokedexTheme
 import org.jetbrains.compose.resources.painterResource
@@ -51,8 +49,6 @@ fun App() {
 			) {
 				val greeting = remember { Greeting().greet() }
 
-				TextCaption(text = "Compose : $greeting")
-				TextBody(text = "Text body that should change the size")
 				Button(onClick = { showContent = !showContent }) {
 					TextTitle(
 						text = "Click me!",
