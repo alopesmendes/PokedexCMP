@@ -5,6 +5,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
 fun TextTitle(
@@ -18,6 +19,12 @@ fun TextTitle(
 		style = MaterialTheme.typography.titleLarge,
 		color = color,
 	)
+}
+
+@Composable
+@Preview
+private fun TextTitlePreview() {
+	TextTitle(text = "Title text")
 }
 
 @Composable
@@ -37,6 +44,14 @@ fun TextBody(
 }
 
 @Composable
+@Preview
+private fun TextBodyPreview() {
+	TextBody(
+		text = "Text body",
+	)
+}
+
+@Composable
 fun TextCaption(
 	modifier: Modifier = Modifier,
 	text: String,
@@ -47,5 +62,13 @@ fun TextCaption(
 		text = text,
 		style = MaterialTheme.typography.bodySmall,
 		color = color,
+	)
+}
+
+@Composable
+@Preview
+private fun TextCaptionPreview() {
+	TextCaption(
+		text = "Text caption",
 	)
 }
