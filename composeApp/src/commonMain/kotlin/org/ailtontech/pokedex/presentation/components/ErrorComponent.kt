@@ -9,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -18,11 +19,15 @@ import pokedex.composeapp.generated.resources.error_avatar
 import pokedex.composeapp.generated.resources.error_title
 
 @Composable
-fun ErrorComponent(errorMessage: String) {
+fun ErrorComponent(
+	modifier: Modifier = Modifier,
+	errorMessage: String,
+) {
 	var openDialog by remember { mutableStateOf(true) }
 
 	if (openDialog) {
 		AlertDialog(
+			modifier = modifier,
 			confirmButton = {
 				Button(
 					onClick = {
