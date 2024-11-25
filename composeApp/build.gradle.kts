@@ -34,9 +34,11 @@ kotlin {
 		}
 	}
 
-	jvm()
+	jvm("desktop")
 
 	sourceSets {
+		val desktopMain by getting
+
 		androidMain.dependencies {
 			implementation(compose.preview)
 			implementation(libs.androidx.activity.compose)
@@ -59,6 +61,7 @@ kotlin {
 			implementation(compose.components.resources)
 			implementation(compose.components.uiToolingPreview)
 			implementation(compose.material3AdaptiveNavigationSuite)
+			implementation(compose.materialIconsExtended)
 
 			// ANDROIDX
 			implementation(libs.androidx.collection)
@@ -86,6 +89,9 @@ kotlin {
 
 			// ADAPTIVE
 			implementation(libs.bundles.adaptive)
+
+			// Logging
+			implementation(libs.napier)
 		}
 
 		iosMain.dependencies {
@@ -217,7 +223,7 @@ detekt {
 	config.setFrom(file("$rootDir/config/detekt.yml"))
 }
 
-tasks.named<Test>("jvmTest") {
+tasks.named<Test>("desktopTest") {
 	useJUnitPlatform()
 	filter {
 		isFailOnNoMatchingTests = false

@@ -14,3 +14,8 @@ Command to initialize other commands of the gradle in the project :
 `./gradlew initializeProject`
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
+
+# Contributing
+## Flaticon
+- [Pokemon icons created by Darius Dan - Flaticon](https://www.flaticon.com/free-icons/pokemon)
+<a href="https://www.flaticon.com/free-icons/pokemon" title="pokemon icons">Pokemon icons created by Darius Dan - Flaticon</a>

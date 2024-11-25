@@ -5,6 +5,7 @@ import ComposeApp
 struct iOSApp: App {
     init() {
         ModulesKt.initializeKoin()
+        NapierProxyKt.debugBuild()
     }
 
     var body: some Scene {
