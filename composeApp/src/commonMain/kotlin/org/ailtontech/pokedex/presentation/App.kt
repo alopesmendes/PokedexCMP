@@ -15,11 +15,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import coil3.compose.setSingletonImageLoaderFactory
 import org.ailtontech.pokedex.Greeting
 import org.ailtontech.pokedex.presentation.components.PokedexFloatingActionButton
 import org.ailtontech.pokedex.presentation.components.PokedexScaffold
 import org.ailtontech.pokedex.presentation.states.ScaffoldState
 import org.ailtontech.pokedex.presentation.theme.PokedexTheme
+import org.ailtontech.pokedex.presentation.utils.getAsyncImageLoader
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import pokedex.composeapp.generated.resources.Res
@@ -28,6 +30,10 @@ import pokedex.composeapp.generated.resources.compose_multiplatform
 @Composable
 @Preview
 fun App() {
+	setSingletonImageLoaderFactory {
+		getAsyncImageLoader(it)
+	}
+
 	PokedexTheme {
 		var scaffoldState by remember { mutableStateOf(ScaffoldState()) }
 		PokedexScaffold(
