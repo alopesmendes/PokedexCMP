@@ -16,13 +16,15 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalDensity
+import androidx.window.core.layout.WindowWidthSizeClass.Companion.COMPACT
+import androidx.window.core.layout.WindowWidthSizeClass.Companion.EXPANDED
+import androidx.window.core.layout.WindowWidthSizeClass.Companion.MEDIUM
 import org.ailtontech.pokedex.core.utils.Constants.ANIMATION_DELAY
 import org.ailtontech.pokedex.core.utils.Constants.DURATION_MILLIS
 import org.ailtontech.pokedex.presentation.theme.LocalWindowSizeClass
@@ -109,10 +111,10 @@ fun ExpandedLoadingComponent(modifier: Modifier = Modifier) {
 @Composable
 fun LoadingComponent(modifier: Modifier = Modifier) {
 	val windowSizeClass = LocalWindowSizeClass.current
-	when (windowSizeClass.widthSizeClass) {
-		WindowWidthSizeClass.Compact -> CompactLoadingComponent(modifier)
-		WindowWidthSizeClass.Medium -> MediumLoadingComponent(modifier)
-		WindowWidthSizeClass.Expanded -> ExpandedLoadingComponent(modifier)
+	when (windowSizeClass.windowWidthSizeClass) {
+		COMPACT -> CompactLoadingComponent(modifier)
+		MEDIUM -> MediumLoadingComponent(modifier)
+		EXPANDED -> ExpandedLoadingComponent(modifier)
 	}
 }
 

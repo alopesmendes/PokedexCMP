@@ -2,12 +2,13 @@ package org.ailtontech.pokedex.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.windowsizeclass.WindowSizeClass
+import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.staticCompositionLocalOf
+import androidx.window.core.layout.WindowSizeClass
 import org.ailtontech.pokedex.presentation.theme.colors.ContrastLevel
 import org.ailtontech.pokedex.presentation.theme.colors.darkThemeColorScheme
 import org.ailtontech.pokedex.presentation.theme.colors.lightThemeColorScheme
@@ -38,10 +39,10 @@ fun PokedexTheme(
 	// Dynamic color is available on Android 12+
 	dynamicColor: Boolean = true,
 	contrastLevel: ContrastLevel = ContrastLevel.NORMAL,
-	windowSizeClass: WindowSizeClass,
 	content: @Composable () -> Unit,
 ) {
 	KoinContext {
+		val windowSizeClass: WindowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
 		val typography by rememberTypography(windowSizeClass)
 		val lightColorScheme by rememberThemeColorScheme(
 			contrastLevel = contrastLevel,

@@ -18,11 +18,11 @@ import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.window.core.layout.WindowWidthSizeClass.Companion.EXPANDED
 import org.ailtontech.pokedex.presentation.theme.LocalWindowSizeClass
 import org.ailtontech.pokedex.presentation.theme.dimensions
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -145,8 +145,8 @@ fun PokedexCard(
 	onClick: () -> Unit,
 ) {
 	val windowSizeClass = LocalWindowSizeClass.current
-	when (windowSizeClass.widthSizeClass) {
-		WindowWidthSizeClass.Expanded -> {
+	when (windowSizeClass.windowWidthSizeClass) {
+		EXPANDED -> {
 			ExpandedCard(
 				modifier = modifier,
 				colors = colors,

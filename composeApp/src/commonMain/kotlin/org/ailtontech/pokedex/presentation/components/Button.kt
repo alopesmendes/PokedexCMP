@@ -10,10 +10,12 @@ import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.SmallFloatingActionButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.windowsizeclass.WindowWidthSizeClass
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.window.core.layout.WindowWidthSizeClass.Companion.COMPACT
+import androidx.window.core.layout.WindowWidthSizeClass.Companion.EXPANDED
+import androidx.window.core.layout.WindowWidthSizeClass.Companion.MEDIUM
 import org.ailtontech.pokedex.presentation.theme.LocalWindowSizeClass
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -43,8 +45,8 @@ fun PokedexFloatingActionButton(
 	label: String,
 ) {
 	val windowSizeClass = LocalWindowSizeClass.current
-	when (windowSizeClass.widthSizeClass) {
-		WindowWidthSizeClass.Compact -> {
+	when (windowSizeClass.windowWidthSizeClass) {
+		COMPACT -> {
 			SmallFloatingActionButton(
 				modifier = modifier,
 				onClick = onClick,
@@ -52,7 +54,7 @@ fun PokedexFloatingActionButton(
 				Icon(icon, contentDescription = contentDescription)
 			}
 		}
-		WindowWidthSizeClass.Medium -> {
+		MEDIUM -> {
 			FloatingActionButton(
 				modifier = modifier,
 				onClick = onClick,
@@ -63,7 +65,7 @@ fun PokedexFloatingActionButton(
 				)
 			}
 		}
-		WindowWidthSizeClass.Expanded -> {
+		EXPANDED -> {
 			ExtendedFloatingActionButton(
 				modifier = modifier,
 				onClick = onClick,
