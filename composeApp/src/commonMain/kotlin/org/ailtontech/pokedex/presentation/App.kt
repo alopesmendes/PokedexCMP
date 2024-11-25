@@ -19,7 +19,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpSize
 import org.ailtontech.pokedex.Greeting
+import org.ailtontech.pokedex.presentation.components.PokedexScaffold
 import org.ailtontech.pokedex.presentation.components.TextTitle
+import org.ailtontech.pokedex.presentation.states.ScaffoldState
 import org.ailtontech.pokedex.presentation.theme.PokedexTheme
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -39,28 +41,36 @@ fun App() {
 			}
 		val windowSizeClass =
 			remember(dpSize) { WindowSizeClass.calculateFromSize(dpSize) }
+
 		PokedexTheme(
 			windowSizeClass = windowSizeClass,
 		) {
-			var showContent by remember { mutableStateOf(false) }
-			Column(
-				Modifier.fillMaxSize(),
-				horizontalAlignment = Alignment.CenterHorizontally,
-			) {
-				val greeting = remember { Greeting().greet() }
+			var scaffoldState by remember { mutableStateOf(ScaffoldState()) }
+			PokedexScaffold(
+				scaffoldState = scaffoldState,
+				onScaffoldStateChange = { scaffoldState = it },
+				content = {
+					var showContent by remember { mutableStateOf(false) }
+					Column(
+						Modifier.fillMaxSize(),
+						horizontalAlignment = Alignment.CenterHorizontally,
+					) {
+						val greeting = remember { Greeting().greet() }
 
-				Button(onClick = { showContent = !showContent }) {
-					TextTitle(
-						text = "Click me!",
-					)
-				}
-				AnimatedVisibility(showContent) {
-					Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-						Image(painterResource(Res.drawable.compose_multiplatform), null)
-						Text("Compose: $greeting")
+						Button(onClick = { showContent = !showContent }) {
+							TextTitle(
+								text = "Click me!",
+							)
+						}
+						AnimatedVisibility(showContent) {
+							Column(Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
+								Image(painterResource(Res.drawable.compose_multiplatform), null)
+								Text("Compose: $greeting")
+							}
+						}
 					}
-				}
-			}
+				},
+			)
 		}
 	}
 }
