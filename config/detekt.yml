@@ -182,7 +182,8 @@ complexity:
       '**/androidInstrumentedTest/**',
       '**/jsTest/**',
       '**/iosTest/**',
-      '**/mock/**'
+      '**/mock/**',
+      '**/*Mapper*'
     ]
     thresholdInFiles: 11
     thresholdInClasses: 15
