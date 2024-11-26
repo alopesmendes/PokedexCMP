@@ -9,7 +9,7 @@ interface Reducer<State : Reducer.ViewState, Event : Reducer.ViewEvent, Effect :
 
 	interface ViewEffect
 
-	fun reduce(
+	suspend fun reduce(
 		updateState: KFunction1<(State) -> State, Unit>,
 		event: Event,
 		sendEvent: (Event) -> Unit,
