@@ -6,7 +6,7 @@ import io.ktor.client.request.get
 import io.ktor.client.request.parameter
 import io.ktor.http.path
 import org.ailtontech.pokedex.features.pokemon.data.datasources.PokemonOverviewRemoteDatasource
-import org.ailtontech.pokedex.features.pokemon.data.models.PokemonListDto
+import org.ailtontech.pokedex.features.pokemon.data.models.pokemonOverview.PokemonListDto
 
 class PokemonOverviewRemoteDatasourceImpl(
 	private val httpClient: HttpClient,
