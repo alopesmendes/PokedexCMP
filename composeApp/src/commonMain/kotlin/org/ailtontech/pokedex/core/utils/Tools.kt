@@ -29,3 +29,9 @@ fun extractQueryParameterValue(
 		}
 	return parameters[queryParameter]
 }
+
+inline fun <reified T> Result<T>.mapToUiState(): UiState<T> =
+	fold(
+		onSuccess = { UiState.Success(it) },
+		onFailure = { UiState.Error(it) },
+	)
