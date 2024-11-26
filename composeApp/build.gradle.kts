@@ -13,6 +13,7 @@ plugins {
 	alias(libs.plugins.dokka)
 	alias(libs.plugins.mokkery)
 	alias(libs.plugins.kotestMultiplatform)
+	alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {

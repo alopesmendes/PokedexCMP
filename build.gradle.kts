@@ -11,4 +11,5 @@ plugins {
 	alias(libs.plugins.dokka) apply false
 	alias(libs.plugins.mokkery) apply false
 	alias(libs.plugins.kotestMultiplatform) apply false
+	alias(libs.plugins.kotlinSerialization) apply false
 }
