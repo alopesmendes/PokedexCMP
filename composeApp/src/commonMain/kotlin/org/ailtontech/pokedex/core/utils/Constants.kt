@@ -11,5 +11,8 @@ object Constants {
 	const val MAX_SIZE_PERCENT = .3
 	val DIRECTORY_PATH = FileSystem.SYSTEM_TEMPORARY_DIRECTORY / "image_cache"
 
-	const val WHILE_SUBSCRIBED_TIMEOUT_MILLIS = 5000L
+	const val WHILE_SUBSCRIBED_TIMEOUT_MILLIS = 5_000L
+	const val REQUEST_TIMEOUT_MILLIS = 15_000L
+	const val RETRY_REQUEST_DELAY = 3_000L
+	const val MAX_RETRIES = 5
 }
