@@ -14,3 +14,18 @@ suspend inline fun <reified T> runSafe(
 			block()
 		}
 	}
+
+fun extractQueryParameterValue(
+	queryParameter: String,
+	url: String,
+): String? {
+	require(url.contains(queryParameter))
+
+	val query = url.substringAfter("?", "")
+	val parameters =
+		query.split("&").associate {
+			val (key, value) = it.split("=")
+			key to value
+		}
+	return parameters[queryParameter]
+}
