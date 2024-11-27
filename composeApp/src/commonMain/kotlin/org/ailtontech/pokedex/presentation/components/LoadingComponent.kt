@@ -8,6 +8,7 @@ import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.offset
@@ -111,10 +112,15 @@ fun ExpandedLoadingComponent(modifier: Modifier = Modifier) {
 @Composable
 fun LoadingComponent(modifier: Modifier = Modifier) {
 	val windowSizeClass = LocalWindowSizeClass.current
-	when (windowSizeClass.windowWidthSizeClass) {
-		COMPACT -> CompactLoadingComponent(modifier)
-		MEDIUM -> MediumLoadingComponent(modifier)
-		EXPANDED -> ExpandedLoadingComponent(modifier)
+	Box(
+		modifier = modifier,
+		contentAlignment = Alignment.Center,
+	) {
+		when (windowSizeClass.windowWidthSizeClass) {
+			COMPACT -> CompactLoadingComponent(Modifier)
+			MEDIUM -> MediumLoadingComponent(Modifier.matchParentSize())
+			EXPANDED -> ExpandedLoadingComponent(Modifier.matchParentSize())
+		}
 	}
 }
 

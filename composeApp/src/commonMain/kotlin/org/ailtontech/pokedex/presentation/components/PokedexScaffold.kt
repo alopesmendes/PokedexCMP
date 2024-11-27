@@ -20,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.window.core.layout.WindowHeightSizeClass.Companion.COMPACT
 import androidx.window.core.layout.WindowWidthSizeClass.Companion.EXPANDED
 import kotlinx.collections.immutable.ImmutableList
+import org.ailtontech.pokedex.presentation.navigation.Routes
+import org.ailtontech.pokedex.presentation.navigation.mapToRoute
 import org.ailtontech.pokedex.presentation.states.NavigationItem
 import org.ailtontech.pokedex.presentation.states.ScaffoldState
 import org.ailtontech.pokedex.presentation.states.navigationItems
@@ -86,6 +88,7 @@ private fun PokedexNavigationSuite(
 fun PokedexScaffold(
 	scaffoldState: ScaffoldState,
 	onScaffoldStateChange: (ScaffoldState) -> Unit,
+	onNavigate: (Routes) -> Unit,
 	content: @Composable () -> Unit,
 ) {
 	val adaptiveInfo = currentWindowAdaptiveInfo()
@@ -110,6 +113,8 @@ fun PokedexScaffold(
 					navigationItems = navigationItems,
 					selectedNavigationItem = scaffoldState.selectNavigationItem,
 					onNavigationItemClick = { item ->
+						onNavigate(item.mapToRoute())
+
 						onScaffoldStateChange(
 							scaffoldState.copy(
 								selectNavigationItem = item,
@@ -123,6 +128,8 @@ fun PokedexScaffold(
 					selectedNavigationItem = scaffoldState.selectNavigationItem,
 					layoutType = customNavSuiteType,
 					onNavigationItemClick = { item ->
+						onNavigate(item.mapToRoute())
+
 						onScaffoldStateChange(
 							scaffoldState.copy(
 								selectNavigationItem = item,
@@ -143,6 +150,7 @@ private fun PokedexScaffoldPreview() {
 	PokedexScaffold(
 		scaffoldState = scaffoldState,
 		onScaffoldStateChange = { scaffoldState = it },
+		onNavigate = {},
 		content = {
 			Text("Current navigation item: ${scaffoldState.selectNavigationItem.label}")
 		},

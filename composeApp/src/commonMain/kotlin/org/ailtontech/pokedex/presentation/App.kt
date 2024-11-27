@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import coil3.compose.setSingletonImageLoaderFactory
 import org.ailtontech.pokedex.presentation.components.PokedexScaffold
-import org.ailtontech.pokedex.presentation.navigation.HomeRoutes
 import org.ailtontech.pokedex.presentation.navigation.NavigationHost
 import org.ailtontech.pokedex.presentation.states.ScaffoldState
 import org.ailtontech.pokedex.presentation.theme.PokedexTheme
@@ -27,16 +26,16 @@ fun App() {
 
 	PokedexTheme {
 		var scaffoldState by remember { mutableStateOf(ScaffoldState()) }
+		val navController = rememberNavController()
 		PokedexScaffold(
 			scaffoldState = scaffoldState,
 			onScaffoldStateChange = { scaffoldState = it },
+			onNavigate = navController::navigate,
 			content = {
-				val navController = rememberNavController()
 				Scaffold {
 					NavigationHost(
 						modifier = Modifier.padding(it),
 						navigationHostController = navController,
-						startDestination = HomeRoutes.PokemonListScreen,
 					)
 				}
 			},
