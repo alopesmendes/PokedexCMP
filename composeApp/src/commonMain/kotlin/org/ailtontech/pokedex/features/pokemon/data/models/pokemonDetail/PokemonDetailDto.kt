@@ -32,10 +32,8 @@ data class PokemonDetailDto(
 	val name: String,
 	@SerialName("order")
 	val order: Int,
-	@SerialName("past_abilities")
-	val pastAbilities: List<String?>,
 	@SerialName("past_types")
-	val pastTypes: List<String?>,
+	val pastTypes: List<PastTypeAbilitiesDto>,
 	@SerialName("species")
 	val species: ResultDto,
 	@SerialName("sprites")

@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
+import org.ailtontech.pokedex.core.logging.PokedexLogging
 
 suspend inline fun <reified T> runSafe(
 	dispatcher: CoroutineDispatcher = Dispatchers.IO,
@@ -33,5 +34,8 @@ fun extractQueryParameterValue(
 inline fun <reified T> Result<T>.mapToUiState(): UiState<T> =
 	fold(
 		onSuccess = { UiState.Success(it) },
-		onFailure = { UiState.Error(it) },
+		onFailure = {
+			PokedexLogging.error(it.stackTraceToString())
+			UiState.Error(it)
+		},
 	)
