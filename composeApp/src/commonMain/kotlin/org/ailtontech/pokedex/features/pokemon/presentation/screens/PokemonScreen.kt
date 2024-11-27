@@ -40,23 +40,23 @@ fun PokemonScreen(
 		value = scaffoldNavigator.scaffoldValue,
 		listPane = {
 			PokemonOverviewContent(
+				modifier = Modifier.fillMaxSize(),
 				isLoading = pokemonState.isLoadingPokemonOverview,
 				error = pokemonState.errorPokemonOverview,
 				pokemons = pokemonState.pokemonList?.pokemons?.toImmutableList() ?: persistentListOf(),
-				modifier = Modifier.fillMaxSize(),
+				hasMore = pokemonState.pokemonList?.limit != null,
+				onClickItem = {
+					scaffoldNavigator.navigateTo(
+						content = it.name,
+						pane = ListDetailPaneScaffoldRole.Detail,
+					)
+				},
 				fetchMore = {
 					pokemonViewModel.sendEvent(
 						PokemonEvent.GetPokemonList(
 							limit = pokemonState.pokemonList?.limit,
 							offset = pokemonState.pokemonList?.offset,
 						),
-					)
-				},
-				hasMore = pokemonState.pokemonList?.limit != null,
-				onClickItem = {
-					scaffoldNavigator.navigateTo(
-						content = it.name,
-						pane = ListDetailPaneScaffoldRole.Detail,
 					)
 				},
 			)

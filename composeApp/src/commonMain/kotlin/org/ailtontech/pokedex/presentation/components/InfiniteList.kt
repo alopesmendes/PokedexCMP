@@ -2,6 +2,7 @@ package org.ailtontech.pokedex.presentation.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -55,7 +56,7 @@ fun <T> InfiniteList(
 			if (hasMore) {
 				LoadingComponent(
 					modifier =
-						Modifier.padding(
+						Modifier.fillMaxWidth().padding(
 							vertical = MaterialTheme.dimensions.large,
 						),
 				)

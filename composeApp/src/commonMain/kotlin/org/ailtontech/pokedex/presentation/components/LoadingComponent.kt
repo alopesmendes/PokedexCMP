@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -67,7 +68,7 @@ fun ExpandedLoadingComponent(modifier: Modifier = Modifier) {
 	fun Dot(offset: Float) =
 		Spacer(
 			Modifier
-				.size(dimensions.medium)
+				.size(dimensions.small)
 				.offset(y = with(density) { offset.toDp() })
 				.background(
 					color = MaterialTheme.colorScheme.primary,
@@ -99,12 +100,14 @@ fun ExpandedLoadingComponent(modifier: Modifier = Modifier) {
 	val scale3 by animateOffsetWithDelay(ANIMATION_DELAY * 2)
 
 	Row(
-		horizontalArrangement = Arrangement.spacedBy(dimensions.small),
+		horizontalArrangement = Arrangement.Center,
 		verticalAlignment = Alignment.CenterVertically,
 		modifier = modifier,
 	) {
 		Dot(scale1)
+		Spacer(Modifier.size(dimensions.small))
 		Dot(scale2)
+		Spacer(Modifier.size(dimensions.small))
 		Dot(scale3)
 	}
 }
@@ -117,9 +120,9 @@ fun LoadingComponent(modifier: Modifier = Modifier) {
 		contentAlignment = Alignment.Center,
 	) {
 		when (windowSizeClass.windowWidthSizeClass) {
-			COMPACT -> CompactLoadingComponent(Modifier)
-			MEDIUM -> MediumLoadingComponent(Modifier.matchParentSize())
-			EXPANDED -> ExpandedLoadingComponent(Modifier.matchParentSize())
+			COMPACT -> CompactLoadingComponent(Modifier.fillMaxWidth())
+			MEDIUM -> MediumLoadingComponent(Modifier.fillMaxWidth())
+			EXPANDED -> ExpandedLoadingComponent(Modifier.fillMaxWidth())
 		}
 	}
 }

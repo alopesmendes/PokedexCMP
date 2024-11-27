@@ -15,7 +15,7 @@ internal fun UiState<PokemonList>.mapUiStatePokemonListToPokemonState(pokemonSta
 
 		UiState.Loading ->
 			pokemonState.copy(
-				isLoadingPokemonOverview = true,
+				isLoadingPokemonOverview = pokemonState.pokemonList?.pokemons.isNullOrEmpty(),
 			)
 
 		is UiState.Success ->
