@@ -40,8 +40,8 @@ fun PokemonScreen(
 		value = scaffoldNavigator.scaffoldValue,
 		listPane = {
 			PokemonOverviewContent(
-				isLoading = pokemonState.isLoading,
-				error = pokemonState.error,
+				isLoading = pokemonState.isLoadingPokemonOverview,
+				error = pokemonState.errorPokemonOverview,
 				pokemons = pokemonState.pokemonList?.pokemons?.toImmutableList() ?: persistentListOf(),
 				modifier = Modifier.fillMaxSize(),
 				fetchMore = {
@@ -71,8 +71,8 @@ fun PokemonScreen(
 
 			PokemonDetailContent(
 				modifier = Modifier.fillMaxSize(),
-				isLoading = pokemonState.isLoading,
-				error = pokemonState.error,
+				isLoading = pokemonState.isLoadingPokemonDetail,
+				error = pokemonState.errorPokemonDetail,
 				pokemonDetail = pokemonState.currentPokemonDetail,
 			)
 		},

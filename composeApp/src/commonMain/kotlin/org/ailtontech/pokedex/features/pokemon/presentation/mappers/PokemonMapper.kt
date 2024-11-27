@@ -9,18 +9,18 @@ internal fun UiState<PokemonList>.mapUiStatePokemonListToPokemonState(pokemonSta
 	return when (this) {
 		is UiState.Error ->
 			pokemonState.copy(
-				isLoading = false,
-				error = throwable,
+				isLoadingPokemonOverview = false,
+				errorPokemonOverview = throwable,
 			)
 
 		UiState.Loading ->
 			pokemonState.copy(
-				isLoading = true,
+				isLoadingPokemonOverview = true,
 			)
 
 		is UiState.Success ->
 			pokemonState.copy(
-				isLoading = false,
+				isLoadingPokemonOverview = false,
 				pokemonList = pokemonState.pokemonList?.plus(data) ?: data,
 			)
 	}
@@ -30,16 +30,16 @@ internal fun UiState<PokemonDetail>.mapUiStatePokemonDetailToPokemonState(pokemo
 	return when (this) {
 		is UiState.Error ->
 			pokemonState.copy(
-				isLoading = false,
-				error = throwable,
+				isLoadingPokemonDetail = false,
+				errorPokemonDetail = throwable,
 			)
 		UiState.Loading ->
 			pokemonState.copy(
-				isLoading = true,
+				isLoadingPokemonDetail = true,
 			)
 		is UiState.Success ->
 			pokemonState.copy(
-				isLoading = false,
+				isLoadingPokemonDetail = false,
 				currentPokemonDetail = data,
 			)
 	}

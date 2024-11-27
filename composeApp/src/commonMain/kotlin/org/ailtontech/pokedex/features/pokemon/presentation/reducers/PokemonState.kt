@@ -7,8 +7,10 @@ import org.ailtontech.pokedex.features.pokemon.domain.entities.pokemonOverview.P
 
 @Immutable
 data class PokemonState(
-	val isLoading: Boolean = false,
-	val error: Throwable? = null,
+	val isLoadingPokemonOverview: Boolean = false,
+	val isLoadingPokemonDetail: Boolean = false,
+	val errorPokemonOverview: Throwable? = null,
+	val errorPokemonDetail: Throwable? = null,
 	val pokemonList: PokemonList? = null,
 	val currentPokemonDetail: PokemonDetail? = null,
 ) : Reducer.ViewState

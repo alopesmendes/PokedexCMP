@@ -15,7 +15,7 @@ import io.ktor.http.isSuccess
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.io.IOException
 import kotlinx.serialization.json.Json
-import org.ailtontech.pokedex.core.utils.Constants.BASE_HOST
+import org.ailtontech.pokedex.core.utils.Constants.BASE_URL
 import org.ailtontech.pokedex.core.utils.Constants.MAX_RETRIES
 import org.ailtontech.pokedex.core.utils.Constants.REQUEST_TIMEOUT_MILLIS
 import org.ailtontech.pokedex.core.utils.Constants.RETRY_REQUEST_DELAY
@@ -64,10 +64,7 @@ val datasourceModule =
 				}
 
 				defaultRequest {
-					host = BASE_HOST
-					url {
-						protocol = io.ktor.http.URLProtocol.HTTPS
-					}
+					url(BASE_URL)
 				}
 			}
 		}
