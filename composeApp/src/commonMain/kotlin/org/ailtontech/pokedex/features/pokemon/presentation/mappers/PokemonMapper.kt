@@ -21,7 +21,7 @@ internal fun UiState<PokemonList>.mapUiStatePokemonListToPokemonState(pokemonSta
 		is UiState.Success ->
 			pokemonState.copy(
 				isLoading = false,
-				pokemonList = pokemonState.pokemonList?.plus(data),
+				pokemonList = pokemonState.pokemonList?.plus(data) ?: data,
 			)
 	}
 }

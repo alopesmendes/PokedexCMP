@@ -18,6 +18,5 @@ object Constants {
 	const val REQUEST_TIMEOUT_MILLIS = 15_000L
 	const val RETRY_REQUEST_DELAY = 3_000L
 	const val MAX_RETRIES = 5
-	const val BASE_HOST = "pokeapi.co"
-	const val BASE_PATH = "api/v2"
+	const val BASE_HOST = "pokeapi.co/api/v2"
 }

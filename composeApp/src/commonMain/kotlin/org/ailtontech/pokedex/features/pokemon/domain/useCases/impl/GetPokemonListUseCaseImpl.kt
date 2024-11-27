@@ -1,6 +1,7 @@
 package org.ailtontech.pokedex.features.pokemon.domain.useCases.impl
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flow
 import org.ailtontech.pokedex.core.utils.UiState
 import org.ailtontech.pokedex.core.utils.mapToUiState
@@ -25,5 +26,5 @@ class GetPokemonListUseCaseImpl(
 				)
 
 			emit(result.mapToUiState())
-		}
+		}.distinctUntilChanged()
 }

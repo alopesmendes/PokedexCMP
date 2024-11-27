@@ -6,6 +6,7 @@ import org.ailtontech.pokedex.features.pokemon.domain.entities.Type
 data class PokemonListItem(
 	val name: String,
 	val sprites: Sprites,
+	val officialArtwork: String?,
 	val types: List<Type>,
 	val locationAreaEncounters: String,
 )

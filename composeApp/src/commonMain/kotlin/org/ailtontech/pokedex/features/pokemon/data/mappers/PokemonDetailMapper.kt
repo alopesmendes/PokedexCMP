@@ -67,6 +67,7 @@ internal fun PokemonDetailDto.mapToPokemonListItem(): PokemonListItem =
 		types = types.mapToTypes(),
 		sprites = sprites.mapToSprites(),
 		locationAreaEncounters = locationAreaEncounters,
+		officialArtwork = sprites.other.officialArtwork.frontDefault,
 	)
 
 internal fun PokemonDetailDto.mapToPokemonDetail(): PokemonDetail =

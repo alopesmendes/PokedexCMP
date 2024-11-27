@@ -14,7 +14,11 @@ class PokemonViewModel(
 		initialState = PokemonState(),
 		reducer = reducer,
 	) {
-	override fun loadData() {
+	init {
+		loadData()
+	}
+
+	private fun loadData() {
 		viewModelScope.launch {
 			sendEvent(PokemonEvent.GetPokemonList())
 		}
