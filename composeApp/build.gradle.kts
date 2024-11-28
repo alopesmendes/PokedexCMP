@@ -115,6 +115,9 @@ kotlin {
 			implementation(libs.bundles.kotlinx.test)
 			implementation(libs.turbine)
 			implementation(libs.bundles.kotest)
+
+			@OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+			implementation(compose.uiTest)
 		}
 
 		jvmTest.dependencies {
@@ -243,5 +246,6 @@ tasks.named<Test>("desktopTest") {
 }
 
 dependencies {
+	implementation(libs.androidx.ui.test.android)
 	testImplementation(libs.konsist)
 }
