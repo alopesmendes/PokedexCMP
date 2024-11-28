@@ -1,7 +1,6 @@
 package org.ailtontech.pokedex.presentation
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -31,13 +30,13 @@ fun App() {
 			scaffoldState = scaffoldState,
 			onScaffoldStateChange = { scaffoldState = it },
 			onNavigate = navController::navigate,
-			content = {
-				Scaffold {
-					NavigationHost(
-						modifier = Modifier.padding(it),
-						navigationHostController = navController,
-					)
-				}
+			content = { paddingValues ->
+				NavigationHost(
+					modifier = Modifier.padding(paddingValues),
+					navigationHostController = navController,
+					scaffoldState = scaffoldState,
+					onScaffoldStateChange = { scaffoldState = it },
+				)
 			},
 		)
 	}

@@ -3,6 +3,7 @@ package org.ailtontech.pokedex.features.pokemon.presentation.screens
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffoldRole
+import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
 import androidx.compose.material3.adaptive.navigation.BackNavigationBehavior
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
@@ -18,6 +19,7 @@ import org.ailtontech.pokedex.features.pokemon.presentation.reducers.PokemonEven
 import org.ailtontech.pokedex.features.pokemon.presentation.viewModels.PokemonViewModel
 import org.ailtontech.pokedex.presentation.components.BackHandler
 import org.ailtontech.pokedex.presentation.components.ListPaneOverview
+import org.ailtontech.pokedex.presentation.states.ScaffoldState
 import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
@@ -25,6 +27,8 @@ import org.koin.compose.viewmodel.koinViewModel
 fun PokemonScreen(
 	modifier: Modifier = Modifier,
 	pokemonViewModel: PokemonViewModel = koinViewModel(),
+	scaffoldState: ScaffoldState,
+	onScaffoldStateChange: (ScaffoldState) -> Unit,
 ) {
 	val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<String>()
 	val pokemonState by pokemonViewModel.state.collectAsStateWithLifecycle()
@@ -32,6 +36,18 @@ fun PokemonScreen(
 
 	BackHandler(scaffoldNavigator.canNavigateBack(backNavigationBehavior)) {
 		scaffoldNavigator.navigateBack(backNavigationBehavior)
+	}
+
+	LaunchedEffect(scaffoldNavigator.scaffoldValue) {
+		val primary = scaffoldNavigator.scaffoldValue.primary
+		val secondary = scaffoldNavigator.scaffoldValue.secondary
+		onScaffoldStateChange(
+			scaffoldState.copy(
+				showTopBar = primary == PaneAdaptedValue.Expanded && secondary == PaneAdaptedValue.Hidden,
+				onBack = { scaffoldNavigator.navigateBack(backNavigationBehavior) },
+				topBarTitle = scaffoldNavigator.currentDestination?.content?.uppercase(),
+			),
+		)
 	}
 
 	ListPaneOverview(

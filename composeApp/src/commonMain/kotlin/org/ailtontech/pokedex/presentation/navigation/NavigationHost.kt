@@ -7,12 +7,15 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import org.ailtontech.pokedex.features.pokemon.presentation.screens.PokemonScreen
+import org.ailtontech.pokedex.presentation.states.ScaffoldState
 
 @Composable
 fun NavigationHost(
 	modifier: Modifier = Modifier,
 	navigationHostController: NavHostController,
 	startDestination: Routes = Routes.HomeRoute,
+	scaffoldState: ScaffoldState,
+	onScaffoldStateChange: (ScaffoldState) -> Unit,
 ) {
 	NavHost(
 		modifier = modifier,
@@ -22,6 +25,8 @@ fun NavigationHost(
 		composable<Routes.HomeRoute> {
 			PokemonScreen(
 				modifier = Modifier.fillMaxSize(),
+				scaffoldState = scaffoldState,
+				onScaffoldStateChange = onScaffoldStateChange,
 			)
 		}
 
