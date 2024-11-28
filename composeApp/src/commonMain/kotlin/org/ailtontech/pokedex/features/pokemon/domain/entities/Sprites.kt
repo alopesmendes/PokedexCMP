@@ -9,4 +9,5 @@ data class Sprites(
 	val frontFemale: String?,
 	val frontShiny: String?,
 	val frontShinyFemale: String?,
+	val officialArtwork: String?,
 )

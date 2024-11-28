@@ -8,4 +8,20 @@
     <string name="home">Home</string>
     <string name="location">Location</string>
     <string name="settings">Settings</string>
+    <string name="about">About</string>
+    <string name="weight">Weight</string>
+    <string name="weight_kg">%1$d kg</string>
+    <string name="order">Order</string>
+    <string name="order_number">#%1$d</string>
+    <string name="base_experience">Base Experience</string>
+    <string name="base_experience_number">+%1$d</string>
+    <string name="stats">Stats</string>
+    <string name="base_stat_number">B: %1$d</string>
+    <string name="effort_number">E: %1$d</string>
+    <string name="stat_name_text">%1$s</string>
+    <string name="moves">Moves</string>
+    <string name="moves_text">Move: %1$s</string>
+    <string name="level_learned_at_number">%1$d</string>
+    <string name="move_learn_method_text">%1$s</string>
+    <string name="version_group_text">%1$s</string>
 </resources>

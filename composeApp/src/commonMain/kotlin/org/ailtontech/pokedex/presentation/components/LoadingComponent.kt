@@ -116,13 +116,13 @@ fun ExpandedLoadingComponent(modifier: Modifier = Modifier) {
 fun LoadingComponent(modifier: Modifier = Modifier) {
 	val windowSizeClass = LocalWindowSizeClass.current
 	Box(
-		modifier = modifier,
+		modifier = modifier.fillMaxWidth(),
 		contentAlignment = Alignment.Center,
 	) {
 		when (windowSizeClass.windowWidthSizeClass) {
-			COMPACT -> CompactLoadingComponent(Modifier.fillMaxWidth())
-			MEDIUM -> MediumLoadingComponent(Modifier.fillMaxWidth())
-			EXPANDED -> ExpandedLoadingComponent(Modifier.fillMaxWidth())
+			COMPACT -> CompactLoadingComponent()
+			MEDIUM -> MediumLoadingComponent()
+			EXPANDED -> ExpandedLoadingComponent()
 		}
 	}
 }

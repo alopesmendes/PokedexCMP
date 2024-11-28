@@ -1,5 +1,7 @@
 package org.ailtontech.pokedex.features.pokemon.presentation.components
 
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import org.ailtontech.pokedex.features.pokemon.domain.entities.pokemonOverview.PokemonListItem
@@ -26,5 +28,9 @@ fun PokemonListItemComponent(
 				text = pokemonListItem.name,
 			)
 		},
+		colors =
+			CardDefaults.elevatedCardColors(
+				containerColor = MaterialTheme.colorScheme.primaryContainer,
+			),
 	)
 }

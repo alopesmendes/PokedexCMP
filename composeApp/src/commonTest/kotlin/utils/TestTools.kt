@@ -60,7 +60,6 @@ fun createPokemonDetailDto(
 		moves = listOf(),
 		name = resultDto?.name ?: "Xavier Duke",
 		order = 6921,
-		pastAbilities = listOf(),
 		pastTypes = listOf(),
 		species =
 			ResultDto(

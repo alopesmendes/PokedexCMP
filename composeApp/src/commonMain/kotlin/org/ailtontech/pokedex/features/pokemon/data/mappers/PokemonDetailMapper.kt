@@ -1,36 +1,14 @@
 package org.ailtontech.pokedex.features.pokemon.data.mappers
 
-import org.ailtontech.pokedex.features.pokemon.data.models.pokemonDetail.MoveDto
 import org.ailtontech.pokedex.features.pokemon.data.models.pokemonDetail.PokemonDetailDto
 import org.ailtontech.pokedex.features.pokemon.data.models.pokemonDetail.SpritesDto
 import org.ailtontech.pokedex.features.pokemon.data.models.pokemonDetail.StatDto
 import org.ailtontech.pokedex.features.pokemon.data.models.pokemonDetail.TypeDto
-import org.ailtontech.pokedex.features.pokemon.data.models.pokemonDetail.VersionGroupDetailDto
 import org.ailtontech.pokedex.features.pokemon.domain.entities.Sprites
 import org.ailtontech.pokedex.features.pokemon.domain.entities.Type
-import org.ailtontech.pokedex.features.pokemon.domain.entities.pokemonDetail.Move
 import org.ailtontech.pokedex.features.pokemon.domain.entities.pokemonDetail.PokemonDetail
 import org.ailtontech.pokedex.features.pokemon.domain.entities.pokemonDetail.Stat
-import org.ailtontech.pokedex.features.pokemon.domain.entities.pokemonDetail.VersionGroupDetail
 import org.ailtontech.pokedex.features.pokemon.domain.entities.pokemonOverview.PokemonListItem
-
-internal fun VersionGroupDetailDto.mapToVersionGroupDetail(): VersionGroupDetail =
-	VersionGroupDetail(
-		levelLearnedAt = levelLearnedAt,
-		moveLearnMethod = moveLearnMethod.name,
-		versionGroup = versionGroup.name,
-	)
-
-internal fun List<VersionGroupDetailDto>.mapToVersionGroupDetails(): List<VersionGroupDetail> =
-	map { it.mapToVersionGroupDetail() }
-
-internal fun MoveDto.mapToMove(): Move =
-	Move(
-		name = move.name,
-		versionGroupDetails = versionGroupDetails.mapToVersionGroupDetails(),
-	)
-
-internal fun List<MoveDto>.mapToMoves(): List<Move> = map { it.mapToMove() }
 
 internal fun StatDto.mapToStat(): Stat =
 	Stat(
@@ -59,6 +37,7 @@ internal fun SpritesDto.mapToSprites(): Sprites =
 		frontFemale = frontFemale,
 		frontShiny = frontShiny,
 		frontShinyFemale = frontShinyFemale,
+		officialArtwork = other.officialArtwork.frontDefault,
 	)
 
 internal fun PokemonDetailDto.mapToPokemonListItem(): PokemonListItem =
@@ -73,7 +52,6 @@ internal fun PokemonDetailDto.mapToPokemonListItem(): PokemonListItem =
 internal fun PokemonDetailDto.mapToPokemonDetail(): PokemonDetail =
 	PokemonDetail(
 		name = name,
-		moves = moves.mapToMoves(),
 		order = order,
 		baseExperience = baseExperience,
 		weight = weight,

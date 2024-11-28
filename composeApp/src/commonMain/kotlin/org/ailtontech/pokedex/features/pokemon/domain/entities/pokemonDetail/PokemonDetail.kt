@@ -5,7 +5,6 @@ import org.ailtontech.pokedex.features.pokemon.domain.entities.Type
 
 data class PokemonDetail(
 	val baseExperience: Int,
-	val moves: List<Move>,
 	val name: String,
 	val order: Int,
 	val sprites: Sprites,

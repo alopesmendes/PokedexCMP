@@ -48,7 +48,6 @@ class GetPokemonDetailUseCaseImplTest {
 			val pokemonDetail =
 				PokemonDetail(
 					baseExperience = 7913,
-					moves = listOf(),
 					name = name,
 					order = 5770,
 					sprites =
@@ -61,6 +60,7 @@ class GetPokemonDetailUseCaseImplTest {
 							frontFemale = null,
 							frontShiny = null,
 							frontShinyFemale = null,
+							officialArtwork = null,
 						),
 					stats = listOf(),
 					types = listOf(),
