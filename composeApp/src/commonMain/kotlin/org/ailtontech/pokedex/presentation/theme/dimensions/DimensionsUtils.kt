@@ -10,7 +10,7 @@ import androidx.window.core.layout.WindowWidthSizeClass.Companion.MEDIUM
 
 @Composable
 fun rememberDimensions(windowSizeClass: WindowSizeClass): State<Dimensions> {
-	return produceState(initialValue = CompactDimensions) {
+	return produceState(initialValue = CompactDimensions, windowSizeClass) {
 		value =
 			when (windowSizeClass.windowWidthSizeClass) {
 				COMPACT -> CompactDimensions

@@ -11,7 +11,7 @@ import androidx.window.core.layout.WindowWidthSizeClass.Companion.MEDIUM
 
 @Composable
 fun rememberShapes(windowSizeClass: WindowSizeClass): State<Shapes> {
-	return produceState(initialValue = CompactShapes) {
+	return produceState(initialValue = CompactShapes, windowSizeClass) {
 		value =
 			when (windowSizeClass.windowWidthSizeClass) {
 				COMPACT -> CompactShapes
