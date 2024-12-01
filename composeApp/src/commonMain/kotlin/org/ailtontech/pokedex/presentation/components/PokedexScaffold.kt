@@ -34,6 +34,7 @@ import org.ailtontech.pokedex.presentation.states.NavigationItem
 import org.ailtontech.pokedex.presentation.states.ScaffoldState
 import org.ailtontech.pokedex.presentation.states.navigationItems
 import org.ailtontech.pokedex.presentation.theme.dimensions
+import org.ailtontech.pokedex.presentation.utils.shouldOnlyDisplayNavigationBar
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -105,15 +106,20 @@ fun PokedexScaffold(
 		with(adaptiveInfo) {
 			val windowSizeClass = adaptiveInfo.windowSizeClass
 			when {
+				shouldOnlyDisplayNavigationBar() -> {
+					NavigationSuiteType.NavigationBar
+				}
 				windowSizeClass.windowWidthSizeClass == EXPANDED && windowSizeClass.windowHeightSizeClass != COMPACT -> {
 					NavigationSuiteType.NavigationDrawer
 				}
 				windowSizeClass.windowWidthSizeClass == EXPANDED && windowSizeClass.windowHeightSizeClass == COMPACT -> {
 					NavigationSuiteType.NavigationRail
 				}
+
 				else -> NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(adaptiveInfo)
 			}
 		}
+
 	NavigationSuiteScaffoldLayout(
 		layoutType = customNavSuiteType,
 		navigationSuite = {

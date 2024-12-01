@@ -20,6 +20,8 @@ import org.ailtontech.pokedex.features.pokemon.presentation.viewModels.PokemonVi
 import org.ailtontech.pokedex.presentation.components.BackHandler
 import org.ailtontech.pokedex.presentation.components.ListPaneOverview
 import org.ailtontech.pokedex.presentation.states.ScaffoldState
+import org.ailtontech.pokedex.presentation.utils.isDetailExpanded
+import org.ailtontech.pokedex.presentation.utils.isListExpanded
 import org.koin.compose.viewmodel.koinViewModel
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
@@ -30,21 +32,32 @@ fun PokemonScreen(
 	scaffoldState: ScaffoldState,
 	onScaffoldStateChange: (ScaffoldState) -> Unit,
 ) {
-	val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<String>()
 	val pokemonState by pokemonViewModel.state.collectAsStateWithLifecycle()
-	val backNavigationBehavior = BackNavigationBehavior.PopUntilContentChange
 
-	BackHandler(scaffoldNavigator.canNavigateBack(backNavigationBehavior)) {
-		scaffoldNavigator.navigateBack(backNavigationBehavior)
+	// Back behavior can be customized based on the scaffold's layout.
+	// In this example, back navigation goes item-by-item when both
+	// list and detail panes are expanded. But if only one pane is
+	// showing, back navigation goes from detail screen to list-screen.
+	val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<String>()
+	val backBehavior =
+		if (scaffoldNavigator.isListExpanded() && scaffoldNavigator.isDetailExpanded()) {
+			BackNavigationBehavior.PopUntilContentChange
+		} else {
+			BackNavigationBehavior.PopUntilScaffoldValueChange
+		}
+
+	BackHandler(scaffoldNavigator.canNavigateBack(backBehavior)) {
+		scaffoldNavigator.navigateBack(backBehavior)
 	}
 
 	LaunchedEffect(scaffoldNavigator.scaffoldValue) {
 		val primary = scaffoldNavigator.scaffoldValue.primary
 		val secondary = scaffoldNavigator.scaffoldValue.secondary
+
 		onScaffoldStateChange(
 			scaffoldState.copy(
 				showTopBar = primary == PaneAdaptedValue.Expanded && secondary == PaneAdaptedValue.Hidden,
-				onBack = { scaffoldNavigator.navigateBack(backNavigationBehavior) },
+				onBack = { scaffoldNavigator.navigateBack(backBehavior) },
 				topBarTitle = scaffoldNavigator.currentDestination?.content?.uppercase(),
 			),
 		)

@@ -28,7 +28,7 @@ import org.ailtontech.pokedex.presentation.theme.dimensions
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Composable
-private fun ColumnCard(
+private fun RowCard(
 	modifier: Modifier = Modifier,
 	colors: CardColors = CardDefaults.elevatedCardColors(),
 	elevation: CardElevation = CardDefaults.elevatedCardElevation(),
@@ -88,7 +88,7 @@ private fun ColumnCard(
 }
 
 @Composable
-private fun RowCard(
+private fun ColumnCard(
 	modifier: Modifier = Modifier,
 	colors: CardColors = CardDefaults.elevatedCardColors(),
 	elevation: CardElevation = CardDefaults.elevatedCardElevation(),
@@ -147,7 +147,7 @@ fun PokedexCard(
 	val windowSizeClass = LocalWindowSizeClass.current
 	when (windowSizeClass.windowWidthSizeClass) {
 		EXPANDED -> {
-			ColumnCard(
+			RowCard(
 				modifier = modifier,
 				colors = colors,
 				elevation = elevation,
@@ -161,7 +161,7 @@ fun PokedexCard(
 		}
 
 		else -> {
-			RowCard(
+			ColumnCard(
 				modifier = modifier,
 				colors = colors,
 				elevation = elevation,
@@ -198,7 +198,7 @@ private fun PokedexCardPreview() {
 @Composable
 @Preview
 private fun CompactCardPreview() {
-	ColumnCard(
+	RowCard(
 		onClick = {},
 		image = { },
 		headline = {
@@ -217,7 +217,7 @@ private fun CompactCardPreview() {
 @Composable
 @Preview
 private fun ExpandedCardPreview() {
-	RowCard(
+	ColumnCard(
 		onClick = {},
 		image = { },
 		headline = {

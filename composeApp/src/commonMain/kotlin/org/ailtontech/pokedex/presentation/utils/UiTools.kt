@@ -1,6 +1,10 @@
 package org.ailtontech.pokedex.presentation.utils
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffoldRole
+import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
+import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.produceState
@@ -14,10 +18,12 @@ import coil3.request.CachePolicy
 import coil3.request.crossfade
 import coil3.util.DebugLogger
 import kotlinx.collections.immutable.persistentMapOf
+import org.ailtontech.pokedex.Platform
 import org.ailtontech.pokedex.core.utils.Constants.DIRECTORY_PATH
 import org.ailtontech.pokedex.core.utils.Constants.MAX_SIZE_BYTES
 import org.ailtontech.pokedex.core.utils.Constants.MAX_SIZE_PERCENT
 import org.ailtontech.pokedex.features.pokemon.domain.entities.Type
+import org.ailtontech.pokedex.getPlatform
 import org.ailtontech.pokedex.presentation.components.ChipItem
 
 fun getAsyncImageLoader(context: PlatformContext) =
@@ -99,3 +105,13 @@ fun rememberInterpolateColor(
 			}
 	}
 }
+
+fun shouldOnlyDisplayNavigationBar(): Boolean = getPlatform() == Platform.Ios
+
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
+fun <T> ThreePaneScaffoldNavigator<T>.isListExpanded(): Boolean =
+	scaffoldValue[ListDetailPaneScaffoldRole.List] == PaneAdaptedValue.Expanded
+
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
+fun <T> ThreePaneScaffoldNavigator<T>.isDetailExpanded(): Boolean =
+	scaffoldValue[ListDetailPaneScaffoldRole.Detail] == PaneAdaptedValue.Expanded
