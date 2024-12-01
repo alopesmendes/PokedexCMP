@@ -27,6 +27,7 @@ navigation-material = "1.7.0-beta02"
 konsist = "0.16.1"
 kotest = "5.9.1"
 napier = "2.7.1"
+uiTestAndroid = "1.7.5"
 
 [libraries]
 # ANDROIDX
@@ -93,6 +94,7 @@ adaptive-window-size = { module = "org.jetbrains.compose.material3:material3-win
 
 # LOGGING
 napier = { module = "io.github.aakira:napier", version.ref = "napier" }
+androidx-ui-test-android = { group = "androidx.compose.ui", name = "ui-test-android", version.ref = "uiTestAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -105,6 +107,7 @@ detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
 mokkery = { id = "dev.mokkery", version.ref = "mokkery" }
 kotestMultiplatform = { id = "io.kotest.multiplatform", version.ref = "kotest" }
+kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
 [bundles]
 # KTOR

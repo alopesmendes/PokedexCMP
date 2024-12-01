@@ -1,10 +1,18 @@
 package org.ailtontech.pokedex.presentation.components
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationRail
 import androidx.compose.material3.NavigationRailItem
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.navigationsuite.NavigationSuite
@@ -20,10 +28,13 @@ import androidx.compose.ui.Modifier
 import androidx.window.core.layout.WindowHeightSizeClass.Companion.COMPACT
 import androidx.window.core.layout.WindowWidthSizeClass.Companion.EXPANDED
 import kotlinx.collections.immutable.ImmutableList
+import org.ailtontech.pokedex.presentation.navigation.Routes
+import org.ailtontech.pokedex.presentation.navigation.mapToRoute
 import org.ailtontech.pokedex.presentation.states.NavigationItem
 import org.ailtontech.pokedex.presentation.states.ScaffoldState
 import org.ailtontech.pokedex.presentation.states.navigationItems
 import org.ailtontech.pokedex.presentation.theme.dimensions
+import org.ailtontech.pokedex.presentation.utils.shouldOnlyDisplayNavigationBar
 import org.jetbrains.compose.resources.stringResource
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
@@ -82,26 +93,33 @@ private fun PokedexNavigationSuite(
 	}
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PokedexScaffold(
 	scaffoldState: ScaffoldState,
 	onScaffoldStateChange: (ScaffoldState) -> Unit,
-	content: @Composable () -> Unit,
+	onNavigate: (Routes) -> Unit,
+	content: @Composable (PaddingValues) -> Unit,
 ) {
 	val adaptiveInfo = currentWindowAdaptiveInfo()
 	val customNavSuiteType =
 		with(adaptiveInfo) {
 			val windowSizeClass = adaptiveInfo.windowSizeClass
 			when {
+				shouldOnlyDisplayNavigationBar() -> {
+					NavigationSuiteType.NavigationBar
+				}
 				windowSizeClass.windowWidthSizeClass == EXPANDED && windowSizeClass.windowHeightSizeClass != COMPACT -> {
 					NavigationSuiteType.NavigationDrawer
 				}
 				windowSizeClass.windowWidthSizeClass == EXPANDED && windowSizeClass.windowHeightSizeClass == COMPACT -> {
 					NavigationSuiteType.NavigationRail
 				}
+
 				else -> NavigationSuiteScaffoldDefaults.calculateFromAdaptiveInfo(adaptiveInfo)
 			}
 		}
+
 	NavigationSuiteScaffoldLayout(
 		layoutType = customNavSuiteType,
 		navigationSuite = {
@@ -110,6 +128,8 @@ fun PokedexScaffold(
 					navigationItems = navigationItems,
 					selectedNavigationItem = scaffoldState.selectNavigationItem,
 					onNavigationItemClick = { item ->
+						onNavigate(item.mapToRoute())
+
 						onScaffoldStateChange(
 							scaffoldState.copy(
 								selectNavigationItem = item,
@@ -123,6 +143,8 @@ fun PokedexScaffold(
 					selectedNavigationItem = scaffoldState.selectNavigationItem,
 					layoutType = customNavSuiteType,
 					onNavigationItemClick = { item ->
+						onNavigate(item.mapToRoute())
+
 						onScaffoldStateChange(
 							scaffoldState.copy(
 								selectNavigationItem = item,
@@ -132,7 +154,35 @@ fun PokedexScaffold(
 				)
 			}
 		},
-		content = content,
+		content = {
+			Scaffold(
+				modifier = Modifier.fillMaxSize(),
+				topBar = {
+					if (scaffoldState.showTopBar) {
+						CenterAlignedTopAppBar(
+							title = {
+								scaffoldState.topBarTitle?.let {
+									Text(
+										text = it,
+									)
+								}
+							},
+							navigationIcon = {
+								IconButton(
+									onClick = scaffoldState.onBack,
+								) {
+									Icon(
+										Icons.AutoMirrored.Filled.ArrowBack,
+										contentDescription = null,
+									)
+								}
+							},
+						)
+					}
+				},
+				content = content,
+			)
+		},
 	)
 }
 
@@ -143,6 +193,7 @@ private fun PokedexScaffoldPreview() {
 	PokedexScaffold(
 		scaffoldState = scaffoldState,
 		onScaffoldStateChange = { scaffoldState = it },
+		onNavigate = {},
 		content = {
 			Text("Current navigation item: ${scaffoldState.selectNavigationItem.label}")
 		},

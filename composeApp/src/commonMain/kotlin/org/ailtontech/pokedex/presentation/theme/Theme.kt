@@ -71,6 +71,7 @@ fun PokedexTheme(
 				typography = typography,
 				content = content,
 				colorScheme = colorScheme,
+				shapes = shapes,
 			)
 		}
 	}

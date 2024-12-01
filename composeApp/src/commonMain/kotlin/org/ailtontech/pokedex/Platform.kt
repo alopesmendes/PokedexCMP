@@ -1,7 +1,9 @@
 package org.ailtontech.pokedex
 
-interface Platform {
-    val name: String
+enum class Platform {
+	Android,
+	Ios,
+	Desktop,
 }
 
 expect fun getPlatform(): Platform

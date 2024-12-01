@@ -12,6 +12,7 @@ data class Dimensions(
 	val large: Dp,
 	val extraLarge: Dp,
 	val cardPadding: Dp,
+	val cardImageAspectRatio: Float,
 	// Fractional weights
 	val smallWeight: Float,
 	val defaultWeight: Float,
@@ -30,6 +31,7 @@ val DefaultDimensions
 			medium = 16.dp,
 			large = 24.dp,
 			cardPadding = 12.dp,
+			cardImageAspectRatio = 1f,
 			extraLarge = 32.dp,
 			smallWeight = 0.25f,
 			defaultWeight = 1f,
@@ -41,7 +43,10 @@ val DefaultDimensions
 // Dimensions for different screen sizes
 val CompactDimensions
 	@ReadOnlyComposable
-	get() = DefaultDimensions
+	get() =
+		DefaultDimensions.copy(
+			cardImageAspectRatio = 16f / 9f,
+		)
 
 val MediumDimensions
 	@ReadOnlyComposable
@@ -63,6 +68,7 @@ val ExpandedDimensions
 			medium = 24.dp,
 			large = 32.dp,
 			extraLarge = 48.dp,
+			cardImageAspectRatio = 1f,
 		)
 
 // CompositionLocal for dimensions

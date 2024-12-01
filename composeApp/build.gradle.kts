@@ -13,6 +13,7 @@ plugins {
 	alias(libs.plugins.dokka)
 	alias(libs.plugins.mokkery)
 	alias(libs.plugins.kotestMultiplatform)
+	alias(libs.plugins.kotlinSerialization)
 }
 
 kotlin {
@@ -31,6 +32,7 @@ kotlin {
 		iosTarget.binaries.framework {
 			baseName = "ComposeApp"
 			isStatic = true
+			binaryOption("bundleId", "org.ailtontech.pokedex")
 		}
 	}
 
@@ -113,6 +115,9 @@ kotlin {
 			implementation(libs.bundles.kotlinx.test)
 			implementation(libs.turbine)
 			implementation(libs.bundles.kotest)
+
+			@OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
+			implementation(compose.uiTest)
 		}
 
 		jvmTest.dependencies {
@@ -241,5 +246,6 @@ tasks.named<Test>("desktopTest") {
 }
 
 dependencies {
+	implementation(libs.androidx.ui.test.android)
 	testImplementation(libs.konsist)
 }
