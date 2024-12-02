@@ -46,9 +46,9 @@ class GetLocationsOverviewUseCaseImplTest {
 			val locationList =
 				LocationList(
 					count = 10,
-					results = (1..10).map { "name$it" },
-					next = null,
-					previous = null,
+					locations = (1..10).map { "name$it" },
+					limit = null,
+					offset = null,
 				)
 			val locationListResult = Result.success(locationList)
 

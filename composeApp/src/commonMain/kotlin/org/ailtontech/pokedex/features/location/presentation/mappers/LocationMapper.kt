@@ -19,7 +19,7 @@ internal fun UiState<LocationList>.mapUiStateLocationListToLocationState(state: 
 		is UiState.Success -> {
 			state.copy(
 				isLocationsLoading = false,
-				locations = data,
+				locations = state.locations?.plus(data) ?: data,
 			)
 		}
 	}
