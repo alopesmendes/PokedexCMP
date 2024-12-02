@@ -19,6 +19,8 @@ import org.ailtontech.pokedex.core.utils.Constants.BASE_URL
 import org.ailtontech.pokedex.core.utils.Constants.MAX_RETRIES
 import org.ailtontech.pokedex.core.utils.Constants.REQUEST_TIMEOUT_MILLIS
 import org.ailtontech.pokedex.core.utils.Constants.RETRY_REQUEST_DELAY
+import org.ailtontech.pokedex.features.location.data.datasources.LocationsRemoteDatasource
+import org.ailtontech.pokedex.features.location.data.datasources.impl.LocationsRemoteDatasourceImpl
 import org.ailtontech.pokedex.features.pokemon.data.datasources.PokemonDetailRemoteDatasource
 import org.ailtontech.pokedex.features.pokemon.data.datasources.PokemonOverviewRemoteDatasource
 import org.ailtontech.pokedex.features.pokemon.data.datasources.impl.PokemonDetailRemoteDatasourceImpl
@@ -71,4 +73,5 @@ val datasourceModule =
 
 		singleOf(::PokemonOverviewRemoteDatasourceImpl) { bind<PokemonOverviewRemoteDatasource>() }
 		singleOf(::PokemonDetailRemoteDatasourceImpl) { bind<PokemonDetailRemoteDatasource>() }
+		singleOf(::LocationsRemoteDatasourceImpl) { bind<LocationsRemoteDatasource>() }
 	}
