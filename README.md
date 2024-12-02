@@ -15,6 +15,9 @@ Command to initialize other commands of the gradle in the project :
 
 Learn more about [Kotlin Multiplatform](https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html)…
 
+You can open the web application by running the `:composeApp:wasmJsBrowserDevelopmentRun` Gradle task and launch by 
+doing `./gradlew composeApp:wasmJsBrowserDevelopmentRun`
+
 # Contributing
 ## Flaticon
 - [Pokemon icons created by Darius Dan - Flaticon](https://www.flaticon.com/free-icons/pokemon)

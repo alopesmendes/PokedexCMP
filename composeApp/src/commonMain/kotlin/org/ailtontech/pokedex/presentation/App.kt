@@ -1,6 +1,7 @@
 package org.ailtontech.pokedex.presentation
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,6 +27,7 @@ fun App() {
 	PokedexTheme {
 		var scaffoldState by remember { mutableStateOf(ScaffoldState()) }
 		val navController = rememberNavController()
+
 		PokedexScaffold(
 			scaffoldState = scaffoldState,
 			onScaffoldStateChange = { scaffoldState = it },
@@ -39,5 +41,7 @@ fun App() {
 				)
 			},
 		)
+
+		Text("Hello world")
 	}
 }

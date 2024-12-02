@@ -1,13 +1,11 @@
 package org.ailtontech.pokedex.core.utils
 
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.IO
 import kotlinx.coroutines.withContext
 import org.ailtontech.pokedex.core.logging.PokedexLogging
 
 suspend inline fun <reified T> runSafe(
-	dispatcher: CoroutineDispatcher = Dispatchers.IO,
+	dispatcher: CoroutineDispatcher,
 	crossinline block: suspend () -> T,
 ): Result<T> =
 	runCatching {

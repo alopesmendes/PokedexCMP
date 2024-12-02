@@ -1,6 +1,8 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpackConfig
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
@@ -22,6 +24,28 @@ kotlin {
 		compilerOptions {
 			jvmTarget.set(JvmTarget.JVM_11)
 		}
+	}
+
+	@OptIn(ExperimentalWasmDsl::class)
+	wasmJs {
+		moduleName = "composeApp"
+		browser {
+			val rootDirPath = project.rootDir.path
+			val projectDirPath = project.projectDir.path
+			commonWebpackConfig {
+				outputFileName = "composeApp.js"
+				devServer =
+					(devServer ?: KotlinWebpackConfig.DevServer()).apply {
+						static =
+							(static ?: mutableListOf()).apply {
+								// Serve sources to debug inside browser
+								add(rootDirPath)
+								add(projectDirPath)
+							}
+					}
+			}
+		}
+		binaries.executable()
 	}
 
 	listOf(
@@ -64,9 +88,6 @@ kotlin {
 			implementation(compose.components.uiToolingPreview)
 			implementation(compose.material3AdaptiveNavigationSuite)
 			implementation(compose.materialIconsExtended)
-
-			// ANDROIDX
-			implementation(libs.androidx.collection)
 
 			// LIFECYCLE
 			implementation(libs.bundles.lifecycle)
