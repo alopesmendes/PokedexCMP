@@ -2,6 +2,7 @@ package utils
 
 import org.ailtontech.pokedex.core.models.ResultDto
 import org.ailtontech.pokedex.core.utils.LongMethodAllowed
+import org.ailtontech.pokedex.features.location.data.models.LocationDetailDto
 import org.ailtontech.pokedex.features.pokemon.data.models.pokemonDetail.AnimatedDto
 import org.ailtontech.pokedex.features.pokemon.data.models.pokemonDetail.BlackWhiteDto
 import org.ailtontech.pokedex.features.pokemon.data.models.pokemonDetail.CriesDto
@@ -288,5 +289,22 @@ fun createPokemonDetailDto(
 		stats = listOf(),
 		types = listOf(),
 		weight = 8086,
+	)
+}
+
+fun createLocationDetailDto(
+	id: Int? = null,
+	name: String? = null,
+): LocationDetailDto {
+	return LocationDetailDto(
+		id = id ?: 1722,
+		name = name ?: "Elena Hines",
+		region =
+			ResultDto(
+				name = "Janette Rogers",
+				url = "https://search.yahoo.com/search?p=odio",
+			),
+		gameIndices = listOf(),
+		areas = listOf(),
 	)
 }

@@ -4,51 +4,36 @@ import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.AnimatedPane
 import androidx.compose.material3.adaptive.layout.AnimatedPaneScope
-import androidx.compose.material3.adaptive.layout.ListDetailPaneScaffold
 import androidx.compose.material3.adaptive.layout.PaneScaffoldDirective
+import androidx.compose.material3.adaptive.layout.SupportingPaneScaffold
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldValue
-import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
-fun ListPaneOverview(
+fun SupportingPaneOverview(
 	modifier: Modifier = Modifier,
 	directive: PaneScaffoldDirective,
 	value: ThreePaneScaffoldValue,
-	listPane: @Composable (AnimatedPaneScope.() -> Unit),
-	detailPane: @Composable (AnimatedPaneScope.() -> Unit),
+	supportingPane: @Composable (AnimatedPaneScope.() -> Unit),
+	mainPane: @Composable (AnimatedPaneScope.() -> Unit),
 ) {
-	ListDetailPaneScaffold(
+	SupportingPaneScaffold(
 		modifier = modifier,
-		listPane = {
-			AnimatedPane(
-				modifier = Modifier.safeContentPadding(),
-				content = listPane,
-			)
-		},
-		detailPane = {
-			AnimatedPane(
-				modifier = Modifier.safeContentPadding(),
-				content = detailPane,
-			)
-		},
-		value = value,
 		directive = directive,
-	)
-}
-
-@OptIn(ExperimentalMaterial3AdaptiveApi::class)
-@Composable
-@Preview
-private fun ListPaneOverviewPreview() {
-	val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator()
-	ListPaneOverview(
-		directive = scaffoldNavigator.scaffoldDirective,
-		value = scaffoldNavigator.scaffoldValue,
-		listPane = {},
-		detailPane = {},
+		value = value,
+		mainPane = {
+			AnimatedPane(
+				modifier = Modifier.safeContentPadding(),
+				content = mainPane,
+			)
+		},
+		supportingPane = {
+			AnimatedPane(
+				modifier = Modifier.safeContentPadding(),
+				content = supportingPane,
+			)
+		},
 	)
 }
